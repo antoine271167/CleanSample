@@ -4,8 +4,8 @@ using MediatR;
 
 namespace CleanSample.Application.Products.Queries;
 
-public class GetProductQueryHandler(IProductRepository productRepository) : IRequestHandler<GetProductQuery, Product>
+public class GetProductQueryHandler(IProductRepository productRepository) : IRequestHandler<GetProductQuery, Product?>
 {
-    public Task<Product> Handle(GetProductQuery query, CancellationToken cancellationToken) =>
-        productRepository.GetProductAsync(query.ProductId);
+    public Task<Product?> Handle(GetProductQuery query, CancellationToken cancellationToken) =>
+        productRepository.GetProductAsync(query.ProductId, cancellationToken);
 }

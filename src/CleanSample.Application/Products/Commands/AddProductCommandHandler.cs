@@ -11,6 +11,6 @@ public class AddProductCommandHandler(IProductRepository productRepository, IMap
     public async Task Handle(AddProductCommand command, CancellationToken cancellationToken)
     {
         var product = mapper.Map<Product>(command.Product);
-        await productRepository.AddProductAsync(product);
+        await productRepository.AddProductAsync(product, cancellationToken);
     }
 }

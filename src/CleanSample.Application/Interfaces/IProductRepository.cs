@@ -4,6 +4,6 @@ namespace CleanSample.Application.Interfaces;
 
 public interface IProductRepository
 {
-    Task<Product> GetProductAsync(Guid id);
-    Task AddProductAsync(Product product);
+    Task<Product?> GetProductAsync(Guid id, CancellationToken cancellationToken);
+    Task AddProductAsync(Product product, CancellationToken cancellationToken);
 }
