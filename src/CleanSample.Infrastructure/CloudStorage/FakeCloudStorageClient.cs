@@ -11,7 +11,11 @@ public class FakeCloudStorageClient : ICloudStorageClient<Product, Guid>
 
     public Task AddEntityAsync(Product entity, CancellationToken cancellationToken)
     {
-        _products[entity.Id] = entity;
+        if (!_products.TryAdd(entity.Id, entity))
+        {
+            throw new InvalidOperationException("Entity already exists in store.");
+        }
+
         return Task.CompletedTask;
     }
 }
