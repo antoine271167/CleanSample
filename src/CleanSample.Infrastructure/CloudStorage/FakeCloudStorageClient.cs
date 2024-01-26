@@ -2,7 +2,7 @@
 
 namespace CleanSample.Infrastructure.CloudStorage;
 
-public class CloudStorageClient : ICloudStorageClient<Product, Guid>
+public class FakeCloudStorageClient : ICloudStorageClient<Product, Guid>
 {
     private static readonly Dictionary<Guid, Product> _products = [];
 

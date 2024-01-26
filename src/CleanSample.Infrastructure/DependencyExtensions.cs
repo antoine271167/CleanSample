@@ -10,6 +10,6 @@ public static class DependencyExtensions
 {
     public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services) =>
         services
-            .AddScoped<ICloudStorageClient<Product, Guid>, CloudStorageClient>()
+            .AddScoped<ICloudStorageClient<Product, Guid>, FakeCloudStorageClient>()
             .AddScoped<IProductRepository, ProductRepository>();
 }
