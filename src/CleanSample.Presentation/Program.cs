@@ -1,3 +1,6 @@
+using CleanSample.Application;
+using CleanSample.Infrastructure;
+
 namespace CleanSample.Presentation;
 
 public static class Program
@@ -6,12 +9,7 @@ public static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-
-        builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        ConfigureServices(builder.Services);
 
         var app = builder.Build();
 
@@ -23,10 +21,15 @@ public static class Program
         }
 
         app.UseAuthorization();
-
-
         app.MapControllers();
-
         app.Run();
     }
+
+    internal static void ConfigureServices(IServiceCollection services) =>
+        services
+            .AddEndpointsApiExplorer()
+            .AddSwaggerGen()
+            .AddInfrastructureDependencies()
+            .AddApplicationDependencies()
+            .AddControllers();
 }

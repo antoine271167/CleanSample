@@ -8,7 +8,7 @@ using ValidationException = FluentValidation.ValidationException;
 
 namespace CleanSample.Application.Products.Processors;
 
-public class GetProductProcessor(ISender mediator, IMapperBase mapper, IValidator<GetProductRequest> validator) :
+public class GetProductProcessor(ISender mediator, IMapper mapper, IValidator<GetProductRequest> validator) :
     IRequestHandler<GetProductRequest, ProductDto>
 {
     public async Task<ProductDto> Handle(GetProductRequest request, CancellationToken cancellationToken)

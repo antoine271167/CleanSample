@@ -1,7 +1,7 @@
 ﻿using CleanSample.Application.Interfaces;
 using CleanSample.Domain;
 
-namespace CleanSample.Infrastructure;
+namespace CleanSample.Infrastructure.Products;
 
 public class ProductRepository : IProductRepository
 {

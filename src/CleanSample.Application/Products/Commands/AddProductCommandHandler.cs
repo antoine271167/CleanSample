@@ -5,7 +5,7 @@ using MediatR;
 
 namespace CleanSample.Application.Products.Commands;
 
-public class AddProductCommandHandler(IProductRepository productRepository, IMapperBase mapper) :
+public class AddProductCommandHandler(IProductRepository productRepository, IMapper mapper) :
     IRequestHandler<AddProductCommand>
 {
     public async Task Handle(AddProductCommand command, CancellationToken cancellationToken)
