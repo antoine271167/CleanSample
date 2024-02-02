@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appName": {
+      "value": "cleansample-prd"
+    },
+    "sharedResourcesName": {
+      "value": "cleansample-prd-shared"
+    },
+    "envAppSettings": {
+      "value": [
+        {
+          "name": "AzureWebJobs.OrchestrationsFunction.Disabled",
+          "value": "1"
+        },
+        {
+          "name": "Environment",
+          "value": "prd"
+        }
+      ]
+    }
+  }
+}

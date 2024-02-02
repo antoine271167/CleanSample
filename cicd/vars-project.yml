@@ -1,0 +1,10 @@
+variables:
+  applicationName: CleanSample
+  projectFileName: CleanSample.Presentation
+  buildProjectFile: src/CleanSample.Presentation/CleanSample.Presentation.csproj
+  testProjectFiles: |
+        src/CleanSample.Application.Tests/CleanSample.Application.Tests.csproj
+        src/CleanSample.Domain.Tests/CleanSample.Domain.Tests.csproj
+        src/CleanSample.Infrastructure.Tests/CleanSample.Infrastructure.Tests.csproj
+        src/CleanSample.Presentation.Tests/CleanSample.Presentation.Tests.csproj
+  publishProjectFiles: src/CleanSample.Presentation/CleanSample.Presentation.csproj
