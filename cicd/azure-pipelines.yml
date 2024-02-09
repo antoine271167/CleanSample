@@ -9,8 +9,7 @@ resources:
   repositories:
   - repository: resources
     type: github
-    name: CleanSample.Shared
-    endpoint: https://github.com/antoine271167/CleanSample.Shared.git
+    name: antoine271167/CleanSample.Shared
     ref: refs/heads/main
 
 pool:
