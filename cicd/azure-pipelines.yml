@@ -10,6 +10,7 @@ resources:
   - repository: resources
     type: github
     name: antoine271167/CleanSample.Shared
+    endpoint: github.com_antoine271167
     ref: refs/heads/main
 
 pool:
