@@ -5,39 +5,40 @@ trigger:
     - release/*
     - main
 
-#resources:
-#  repositories:
-#  - repository: resources
-#    type: git
-#    name: Project/Repo
-#    ref: refs/heads/main
+resources:
+  repositories:
+  - repository: resources
+    type: github
+    name: CleanSample.Shared
+    endpoint: https://github.com/antoine271167/CleanSample.Shared.git
+    ref: refs/heads/main
 
 pool:
   vmImage: windows-latest
 
 variables:
 - template: vars-project.yml
-- template: shared/yaml/vars/global.yml #@resources
+- template: vars/global.yml@resources
 
 name: $(applicationName)-1.0.$(Rev:r)
 
 stages:
-- template: shared/yaml/templates/stage/build-stage.yml #@resources
+- template: /templates/stage/build-stage.yml@resources
 
 - template: env-stage.yml
   parameters:
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
     environmentName: dev
-    azureSubscription: ${{variables.azureSubscription}}
+    azureSubscription: ${{ variables.azureSubscription }}
 
 - template: env-stage.yml
   parameters:
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
     environmentName: tst
-    azureSubscription: ${{variables.azureSubscription}}
+    azureSubscription: ${{ variables.azureSubscription }}
 
 - template: env-stage.yml
   parameters:
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
     environmentName: prd
-    azureSubscription: ${{variables.azureSubscription}}
+    azureSubscription: ${{ variables.azureSubscription }}

@@ -6,39 +6,31 @@ parameters:
   type: string
 
 stages:
-- stage: ${{parameters.environmentName}}Infra
-  displayName: ${{parameters.environmentName}} - deploy
-  condition: ${{parameters.condition}}
+- stage: ${{ parameters.environmentName }}Infra
+  displayName: ${{ parameters.environmentName }} - deploy
+  condition: ${{ parameters.condition }}
   dependsOn: Build
-  variables:
-  - template: vars-${{parameters.environmentName}}.yml
   jobs:
-  - job: CreateFunctionAppResources
-    displayName: Create FunctionApp Resources for ${{parameters.environmentName}}
+  - job: CreateAppResources
+    displayName: Create App Resources for ${{ parameters.environmentName }}
     steps:
     - checkout: self
     - checkout: resources
-    - template: shared/yaml/templates/task/resourcegroup-create-task.yml #@resources
+    - template: /templates/task/webapp-create-task-bicep.yml@resources
       parameters:
-        azureSubscription: ${{parameters.azureSubscription}}
-        resourceGroup: '$(appName)-rg'
-    - template: shared/yaml/templates/task/functionapp-create-task-bicep.yml #@resources
-      parameters:
-        azureSubscription: ${{parameters.azureSubscription}}
-        appName: $(appName)
-        appSettings: $(Pipeline.Workspace)\s\Fiberwolf.Worker.Bot\cicd\parameters.json
-        envAppSettings: $(Pipeline.Workspace)\s\Fiberwolf.Worker.Bot\cicd\parameters.${{parameters.environmentName}}.json
-        appRegClientId: $(clientId)
+        azureSubscription: ${{ parameters.azureSubscription }}
+        appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\params.json
+        envAppSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\params.${{ parameters.environmentName }}.json
 
-  - deployment: ${{parameters.environmentName}}
-    displayName: Deploy App to ${{parameters.environmentName}}
-    environment: azdo-${{parameters.environmentName}}
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - template: /yaml/templates/task/functionapp-deploy-task.yml@resources
-            parameters:
-              azureSubscription: ${{parameters.azureSubscription}}
-              functionAppName: '$(appName)-fa'
-              resourceGroupName: '$(appName)-rg'
+  # - deployment: ${{parameters.environmentName}}
+  #   displayName: Deploy App to ${{parameters.environmentName}}
+  #   environment: azdo-${{parameters.environmentName}}
+  #   strategy:
+  #     runOnce:
+  #       deploy:
+  #         steps:
+  #         - template: /yaml/templates/task/functionapp-deploy-task.yml@resources
+  #           parameters:
+  #             azureSubscription: ${{parameters.azureSubscription}}
+  #             functionAppName: '$(appName)-fa'
+  #             resourceGroupName: '$(appName)-rg'
