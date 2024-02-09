@@ -31,14 +31,14 @@ stages:
     environmentName: dev
     azureSubscription: ${{ variables.azureSubscription }}
 
-- template: env-stage.yml
-  parameters:
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
-    environmentName: tst
-    azureSubscription: ${{ variables.azureSubscription }}
+# - template: env-stage.yml
+#   parameters:
+#     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
+#     environmentName: tst
+#     azureSubscription: ${{ variables.azureSubscription }}
 
-- template: env-stage.yml
-  parameters:
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
-    environmentName: prd
-    azureSubscription: ${{ variables.azureSubscription }}
+# - template: env-stage.yml
+#   parameters:
+#     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+#     environmentName: prd
+#     azureSubscription: ${{ variables.azureSubscription }}
