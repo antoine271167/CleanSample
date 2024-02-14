@@ -27,7 +27,8 @@ stages:
 
 - template: env-stage.yml
   parameters:
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
+    #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
     environmentName: dev
     azureSubscription: ${{ variables.azureSubscription }}
 
