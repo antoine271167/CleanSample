@@ -5,15 +5,8 @@
     "appName": {
       "value": "cleansample-tst"
     },
-    "sharedResourcesName": {
-      "value": "cleansample-tst-shared"
-    },
     "envAppSettings": {
       "value": [
-        {
-          "name": "AzureWebJobs.OrchestrationsFunction.Disabled",
-          "value": "0"
-        },
         {
           "name": "Environment",
           "value": "tst"

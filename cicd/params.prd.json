@@ -5,15 +5,8 @@
     "appName": {
       "value": "cleansample-prd"
     },
-    "sharedResourcesName": {
-      "value": "cleansample-prd-shared"
-    },
     "envAppSettings": {
       "value": [
-        {
-          "name": "AzureWebJobs.OrchestrationsFunction.Disabled",
-          "value": "1"
-        },
         {
           "name": "Environment",
           "value": "prd"

@@ -5,15 +5,8 @@
     "appName": {
       "value": "cleansample-dev"
     },
-    "sharedResourcesName": {
-      "value": "cleansample-dev-shared"
-    },
     "envAppSettings": {
       "value": [
-        {
-          "name": "AzureWebJobs.OrchestrationsFunction.Disabled",
-          "value": "1"
-        },
         {
           "name": "Environment",
           "value": "dev"
