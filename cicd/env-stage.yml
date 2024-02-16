@@ -4,6 +4,10 @@ parameters:
 - name: condition
 - name: azureSubscription
   type: string
+- name: appName
+  type: string
+- name: projectName
+  type: string
 
 stages:
 - stage: ${{ parameters.environmentName }}Infra
@@ -22,15 +26,15 @@ stages:
         appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\params.json
         envAppSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\params.${{ parameters.environmentName }}.json
 
-  # - deployment: ${{parameters.environmentName}}
-  #   displayName: Deploy App to ${{parameters.environmentName}}
-  #   environment: azdo-${{parameters.environmentName}}
-  #   strategy:
-  #     runOnce:
-  #       deploy:
-  #         steps:
-  #         - template: /yaml/templates/task/functionapp-deploy-task.yml@resources
-  #           parameters:
-  #             azureSubscription: ${{parameters.azureSubscription}}
-  #             functionAppName: '$(appName)-fa'
-  #             resourceGroupName: '$(appName)-rg'
+  - deployment: ${{ parameters.environmentName }}
+    displayName: Deploy App to ${{ parameters.environmentName }}
+    environment: azdo-${{ parameters.environmentName }}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: /templates/task/appservice-deploy-task.yml@resources
+            parameters:
+              azureSubscription: ${{ parameters.azureSubscription }}
+              appServiceName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}-as'
+              projectName: ${{ parameters.projectName }}

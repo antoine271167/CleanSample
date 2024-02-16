@@ -20,7 +20,7 @@ variables:
 - template: vars-project.yml
 - template: vars/global.yml@resources
 
-name: $(applicationName)-1.0.$(Rev:r)
+name: $(appName)-1.0.$(Rev:r)
 
 stages:
 - template: /templates/stage/build-stage.yml@resources
@@ -31,15 +31,21 @@ stages:
     condition: succeeded()
     environmentName: dev
     azureSubscription: ${{ variables.azureSubscription }}
+    appName: ${{ variables.appName }}
+    projectName: ${{ variables.projectName }}
 
 # - template: env-stage.yml
 #   parameters:
 #     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
 #     environmentName: tst
 #     azureSubscription: ${{ variables.azureSubscription }}
+    # appName: ${{ variables.appName }}
+    # projectName: ${{ variables.projectName }}
 
 # - template: env-stage.yml
 #   parameters:
 #     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 #     environmentName: prd
 #     azureSubscription: ${{ variables.azureSubscription }}
+    # appName: ${{ variables.appName }}
+    # projectName: ${{ variables.projectName }}
