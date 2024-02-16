@@ -3,8 +3,8 @@ variables:
   projectName: $(appName).Presentation
   buildProjectFile: src/$(appName).Presentation/$(appName).Presentation.csproj
   testProjectFiles: |
-        src/$(appName).Application.Tests/$(appName).Application.Tests.csproj
-        src/$(appName).Domain.Tests/$(appName).Domain.Tests.csproj
-        src/$(appName).Infrastructure.Tests/$(appName).Infrastructure.Tests.csproj
-        src/$(appName).Presentation.Tests/$(appName).Presentation.Tests.csproj
+        tests/$(appName).Application.Tests/$(appName).Application.Tests.csproj
+        tests/$(appName).Domain.Tests/$(appName).Domain.Tests.csproj
+        tests/$(appName).Infrastructure.Tests/$(appName).Infrastructure.Tests.csproj
+        tests/$(appName).Presentation.Tests/$(appName).Presentation.Tests.csproj
   publishProjectFiles: src/$(appName).Presentation/$(appName).Presentation.csproj
