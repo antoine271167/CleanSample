@@ -29,6 +29,7 @@ stages:
   - deployment: ${{ parameters.environmentName }}
     displayName: Deploy App to ${{ parameters.environmentName }}
     environment: azdo-${{ parameters.environmentName }}
+    dependsOn: CreateAppResources
     strategy:
       runOnce:
         deploy:
