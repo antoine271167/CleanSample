@@ -37,5 +37,5 @@ stages:
           - template: /templates/task/appservice-deploy-task.yml@resources
             parameters:
               azureSubscription: ${{ parameters.azureSubscription }}
-              appServiceName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}-as'
+              appServiceName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}-as
               projectName: ${{ parameters.projectName }}
