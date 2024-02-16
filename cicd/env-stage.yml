@@ -20,7 +20,7 @@ stages:
     steps:
     - checkout: self
     - checkout: resources
-    - template: /templates/task/appservice-create-task-bicep.yml@resources
+    - template: /templates/task/appservice-create-task.yml@resources
       parameters:
         azureSubscription: ${{ parameters.azureSubscription }}
         appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\params.json
