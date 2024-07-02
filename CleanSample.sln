@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanSample.Presentation", "src\CleanSample.Presentation\CleanSample.Presentation.csproj", "{9E0FBA8E-09B2-4286-8517-6B929A972B29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanSample.Presentation.AppService", "src\CleanSample.Presentation.AppService\CleanSample.Presentation.AppService.csproj", "{9E0FBA8E-09B2-4286-8517-6B929A972B29}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanSample.Application", "src\CleanSample.Application\CleanSample.Application.csproj", "{90100F32-5CF0-4E44-B332-B8C46549F95F}"
 EndProject
@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanSample.Infrastructure.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanSample.Application.Tests", "tests\CleanSample.Application.Tests\CleanSample.Application.Tests.csproj", "{01FE3521-C9C5-4E07-8763-178DD411937E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanSample.Presentation.Tests", "tests\CleanSample.Presentation.Tests\CleanSample.Presentation.Tests.csproj", "{AA349546-135D-4B36-BC0E-4A98CF02E3FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanSample.Presentation.AppService.Tests", "tests\CleanSample.Presentation.AppService.Tests\CleanSample.Presentation.AppService.Tests.csproj", "{AA349546-135D-4B36-BC0E-4A98CF02E3FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

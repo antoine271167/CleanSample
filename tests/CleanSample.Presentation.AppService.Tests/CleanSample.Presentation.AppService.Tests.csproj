@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CleanSample.Presentation\CleanSample.Presentation.csproj" />
+    <ProjectReference Include="..\..\src\CleanSample.Presentation.AppService\CleanSample.Presentation.AppService.csproj" />
   </ItemGroup>
 
 </Project>

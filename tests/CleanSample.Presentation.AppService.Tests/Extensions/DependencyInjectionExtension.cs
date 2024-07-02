@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanSample.Presentation.Tests.Extensions;
+namespace CleanSample.Presentation.AppService.Tests.Extensions;
 
 public static class DependencyInjectionExtension
 {

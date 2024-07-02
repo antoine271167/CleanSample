@@ -1,10 +1,10 @@
 using CleanSample.Application.Products.Dto;
 using CleanSample.Application.Products.Requests;
-using CleanSample.Presentation.Controllers;
+using CleanSample.Presentation.AppService.Controllers;
 using MediatR;
 using NSubstitute;
 
-namespace CleanSample.Presentation.Tests.Controllers;
+namespace CleanSample.Presentation.AppService.Tests.Controllers;
 
 public class ProductControllerTests
 {

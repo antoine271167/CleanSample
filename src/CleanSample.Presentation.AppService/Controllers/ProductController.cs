@@ -3,7 +3,7 @@ using CleanSample.Application.Products.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanSample.Presentation.Controllers;
+namespace CleanSample.Presentation.AppService.Controllers;
 
 [ApiController]
 [Route("[controller]")]

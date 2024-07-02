@@ -1,8 +1,8 @@
-﻿using CleanSample.Presentation.Tests.Extensions;
+﻿using CleanSample.Presentation.AppService.Tests.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanSample.Presentation.Tests;
+namespace CleanSample.Presentation.AppService.Tests;
 
 public class ProgramTests
 {

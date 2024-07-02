@@ -1,7 +1,7 @@
 using CleanSample.Application;
 using CleanSample.Infrastructure;
 
-namespace CleanSample.Presentation;
+namespace CleanSample.Presentation.AppService;
 
 public static class Program
 {
