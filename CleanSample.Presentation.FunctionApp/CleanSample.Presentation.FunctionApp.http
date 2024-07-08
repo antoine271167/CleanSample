@@ -1,0 +1,13 @@
+@Sample.Presentation_HostAddress = http://localhost:7149
+
+GET {{Sample.Presentation_HostAddress}}/api/GetProduct/769F7443-33B2-412E-A852-16EC02494961
+###
+
+POST {{Sample.Presentation_HostAddress}}/api/AddProduct
+Content-Type: application/json
+
+{
+    "id": "769F7443-33B2-412E-A852-16EC02494961",
+    "name": "Product Name"
+}
+###

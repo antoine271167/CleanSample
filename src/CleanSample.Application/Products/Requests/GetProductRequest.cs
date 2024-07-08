@@ -3,7 +3,7 @@ using MediatR;
 
 namespace CleanSample.Application.Products.Requests;
 
-public class GetProductRequest(Guid productId) : IRequest<ProductDto>
+public class GetProductRequest(Guid productId) : IRequest<ProductDto?>
 {
     public Guid ProductId { get; } = productId;
 }

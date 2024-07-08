@@ -9,9 +9,9 @@ using ValidationException = FluentValidation.ValidationException;
 namespace CleanSample.Application.Products.Processors;
 
 public class GetProductProcessor(ISender mediator, IMapper mapper, IValidator<GetProductRequest> validator) :
-    IRequestHandler<GetProductRequest, ProductDto>
+    IRequestHandler<GetProductRequest, ProductDto?>
 {
-    public async Task<ProductDto> Handle(GetProductRequest request, CancellationToken cancellationToken)
+    public async Task<ProductDto?> Handle(GetProductRequest request, CancellationToken cancellationToken)
     {
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
@@ -20,6 +20,6 @@ public class GetProductProcessor(ISender mediator, IMapper mapper, IValidator<Ge
         }
 
         var product = await mediator.Send(new GetProductQuery(request.ProductId), cancellationToken);
-        return mapper.Map<ProductDto>(product);
+        return mapper.Map<ProductDto?>(product);
     }
 }

@@ -13,7 +13,7 @@ public class FakeCloudStorageClient : ICloudStorageClient<Product, Guid>
     {
         if (!_products.TryAdd(entity.Id, entity))
         {
-            throw new InvalidOperationException("Entity already exists in store.");
+            throw new ArgumentException("Entity already exists in store.");
         }
 
         return Task.CompletedTask;
