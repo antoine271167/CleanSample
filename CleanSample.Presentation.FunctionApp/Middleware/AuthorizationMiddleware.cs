@@ -15,12 +15,12 @@ public class AuthorizationMiddleware : IFunctionsWorkerMiddleware
         FunctionContext context,
         FunctionExecutionDelegate next)
     {
-        //var principalFeature = context.Features.Get<JwtPrincipalFeature>();
-        //if (!AuthorizePrincipal(context, principalFeature.Principal))
-        //{
-        //    context.SetHttpResponseStatusCode(HttpStatusCode.Forbidden);
-        //    return;
-        //}
+        var principalFeature = context.Features.Get<JwtPrincipalFeature>();
+        if (!AuthorizePrincipal(context, principalFeature.Principal))
+        {
+            await context.SetHttpResponseStatusCodeAsync(HttpStatusCode.Forbidden);
+            return;
+        }
 
         await next.Invoke(context);
     }

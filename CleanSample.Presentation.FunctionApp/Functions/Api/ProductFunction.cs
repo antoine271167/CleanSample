@@ -13,11 +13,11 @@ namespace CleanSample.Presentation.FunctionApp.Functions.Api;
 
 public class ProductFunction(ILogger<ProductFunction> logger, ISender mediator)
 {
-    //[Authorize(AppRoles = [AppRoles.ProductsRead])]
+    [Authorize(AppRoles = [AppRoles.ProductsRead])]
     [Function(nameof(GetProduct))]
     public async Task<IActionResult> GetProduct(
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "getproduct/{productId}")]
-        HttpRequest req, FunctionContext executionContext, Guid productId)
+        HttpRequest req, Guid productId)
     {
         try
         {
@@ -31,7 +31,7 @@ public class ProductFunction(ILogger<ProductFunction> logger, ISender mediator)
         }
     }
 
-    //[Authorize(AppRoles = [AppRoles.ProductsChange])]
+    [Authorize(AppRoles = [AppRoles.ProductsChange])]
     [Function(nameof(AddProduct))]
     public async Task<IActionResult> AddProduct(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "addproduct")]

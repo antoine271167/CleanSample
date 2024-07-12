@@ -1,6 +1,18 @@
 @Sample.Presentation_HostAddress = http://localhost:7149
+@AccessToken = <access token here>
+@TenantId = 8b0c1272-c1f1-43c6-9e40-d9066a2e2d37
+
+POST https://login.microsoftonline.com/{{TenantId}}/oauth2/v2.0/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=a0182048-04b0-46e0-b90f-0d68724da096
+&client_secret=<client secret here>
+&scope=api://a0182048-04b0-46e0-b90f-0d68724da096/.default
+&grant_type=client_credentials
+###
 
 GET {{Sample.Presentation_HostAddress}}/api/GetProduct/769F7443-33B2-412E-A852-16EC02494961
+Authorization: Bearer {{AccessToken}}
 ###
 
 POST {{Sample.Presentation_HostAddress}}/api/AddProduct

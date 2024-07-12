@@ -50,7 +50,8 @@ public class AuthenticationMiddleware : IFunctionsWorkerMiddleware
 
         // Get OpenID Connect metadata
         var validationParameters = _tokenValidationParameters.Clone();
-        var openIdConfig = await _configurationManager.GetConfigurationAsync(default);
+        var openIdConfig = await _configurationManager.GetConfigurationAsync();
+
         validationParameters.ValidIssuer = openIdConfig.Issuer;
         validationParameters.IssuerSigningKeys = openIdConfig.SigningKeys;
 
