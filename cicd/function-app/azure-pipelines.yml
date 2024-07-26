@@ -31,7 +31,7 @@ stages:
     condition: succeeded()
     environmentName: dev
     azureSubscription: ${{ variables.azureSubscription }}
-    appName: ${{ variables.appName }}
+    appName: ${{ variables.appName }}-fa
     projectName: ${{ variables.projectName }}
 
 # - template: env-stage.yml
@@ -39,7 +39,7 @@ stages:
 #     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
 #     environmentName: tst
 #     azureSubscription: ${{ variables.azureSubscription }}
-    # appName: ${{ variables.appName }}
+    # appName: ${{ variables.appName }}-fa
     # projectName: ${{ variables.projectName }}
 
 # - template: env-stage.yml
@@ -47,5 +47,5 @@ stages:
 #     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 #     environmentName: prd
 #     azureSubscription: ${{ variables.azureSubscription }}
-    # appName: ${{ variables.appName }}
+    # appName: ${{ variables.appName }}-fa
     # projectName: ${{ variables.projectName }}
