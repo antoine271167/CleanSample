@@ -5,7 +5,7 @@ using CleanSample.Presentation.FunctionApp.Authorization;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Middleware;
 
-namespace CleanSample.Presentation.FunctionApp.Middleware;
+namespace CleanSample.Presentation.FunctionApp.Middleware.Security;
 
 public class AuthorizationMiddleware : IFunctionsWorkerMiddleware
 {
@@ -16,7 +16,7 @@ public class AuthorizationMiddleware : IFunctionsWorkerMiddleware
         FunctionExecutionDelegate next)
     {
         var principalFeature = context.Features.Get<JwtPrincipalFeature>();
-        if (!AuthorizePrincipal(context, principalFeature.Principal))
+        if (!AuthorizePrincipal(context, principalFeature!.Principal))
         {
             await context.SetHttpResponseStatusCodeAsync(HttpStatusCode.Forbidden);
             return;
@@ -52,7 +52,7 @@ public class AuthorizationMiddleware : IFunctionsWorkerMiddleware
         // Scopes are stored in a single claim, space-separated
         var callerScopes = (principal.FindFirst(_scopeClaimType)?.Value ?? "")
             .Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        var callerHasAcceptedScope = callerScopes.Any(cs => acceptedScopes.Contains(cs));
+        var callerHasAcceptedScope = callerScopes.Any(acceptedScopes.Contains);
 
         // This app requires both a scope and user role
         // when called with scopes, so we check both
@@ -72,45 +72,22 @@ public class AuthorizationMiddleware : IFunctionsWorkerMiddleware
     private static (List<string> scopes, List<string> userRoles) GetAcceptedScopesAndUserRoles(MemberInfo targetMethod)
     {
         var attributes = GetCustomAttributesOnClassAndMethod<AuthorizeAttribute>(targetMethod);
-        // If scopes A and B are allowed at class level,
-        // and scope A is allowed at method level,
-        // then only scope A can be allowed.
-        // This finds those common scopes and
-        // user roles on the attributes.
-        var scopes = attributes
-            .Skip(1)
-            .Select(a => a.Scopes)
-            .Aggregate(attributes.FirstOrDefault()?.Scopes ?? Enumerable.Empty<string>(),
-                (result, acceptedScopes) => result.Intersect(acceptedScopes))
-            .ToList();
-        var userRoles = attributes
-            .Skip(1)
-            .Select(a => a.UserRoles)
-            .Aggregate(attributes.FirstOrDefault()?.UserRoles ?? Enumerable.Empty<string>(),
-                (result, acceptedRoles) => result.Intersect(acceptedRoles))
-            .ToList();
+        var scopes = attributes.SelectMany(a => a.Scopes).Distinct().ToList();
+        var userRoles = attributes.SelectMany(a => a.UserRoles).Distinct().ToList();
         return (scopes, userRoles);
     }
 
     private static List<string> GetAcceptedAppRoles(MemberInfo targetMethod)
     {
         var attributes = GetCustomAttributesOnClassAndMethod<AuthorizeAttribute>(targetMethod);
-        // Same as above for scopes and user roles,
-        // only allow app roles that are common in
-        // class and method level attributes.
-        return attributes
-            .Skip(1)
-            .Select(a => a.AppRoles)
-            .Aggregate(attributes.FirstOrDefault()?.UserRoles ?? Enumerable.Empty<string>(),
-                (result, acceptedRoles) => result.Intersect(acceptedRoles))
-            .ToList();
+        return attributes.SelectMany(a => a.AppRoles).Distinct().ToList();
     }
 
     private static List<T> GetCustomAttributesOnClassAndMethod<T>(MemberInfo targetMethod)
         where T : Attribute
     {
         var methodAttributes = targetMethod.GetCustomAttributes<T>();
-        var classAttributes = targetMethod.DeclaringType.GetCustomAttributes<T>();
+        var classAttributes = targetMethod.DeclaringType!.GetCustomAttributes<T>();
         return methodAttributes.Concat(classAttributes).ToList();
     }
 }

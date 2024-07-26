@@ -1,0 +1,10 @@
+variables:
+  appName: CleanSampleFunctionApp
+  projectName: $(appName).Presentation.FunctionApp
+  buildProjectFile: src/$(appName).Presentation.AppService/$(appName).Presentation.FunctionApp.csproj
+  testProjectFiles: |
+        tests/$(appName).Application.Tests/$(appName).Application.Tests.csproj
+        tests/$(appName).Domain.Tests/$(appName).Domain.Tests.csproj
+        tests/$(appName).Infrastructure.Tests/$(appName).Infrastructure.Tests.csproj
+        tests/$(appName).Presentation.AppService.Tests/$(appName).Presentation.FunctionApp.Tests.csproj
+  publishProjectFiles: src/$(appName).Presentation.AppService/$(appName).Presentation.FunctionApp.csproj

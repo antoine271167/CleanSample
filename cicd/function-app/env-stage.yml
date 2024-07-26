@@ -20,12 +20,12 @@ stages:
     steps:
     - checkout: self
     - checkout: resources
-    - template: /templates/task/appservice-create-task.yml@resources
+    - template: /templates/task/functionapp-create-task.yml@resources
       parameters:
         azureSubscription: ${{ parameters.azureSubscription }}
-        appName: ${{ parameters.appName }}
-        appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\app-service\params.json
-        envAppSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\app-service\params.${{ parameters.environmentName }}.json
+        appName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}
+        appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\function-app\params.json
+        envAppSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\function-app\params.${{ parameters.environmentName }}.json
 
   - deployment: ${{ parameters.environmentName }}
     displayName: Deploy App to ${{ parameters.environmentName }}
@@ -35,8 +35,8 @@ stages:
       runOnce:
         deploy:
           steps:
-          - template: /templates/task/appservice-deploy-task.yml@resources
+          - template: /templates/task/functionapp-deploy-task.yml@resources
             parameters:
               azureSubscription: ${{ parameters.azureSubscription }}
-              appServiceName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}-as
-              projectName: ${{ parameters.projectName }}
+              functionAppName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}-fa
+              resourceGroupName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}-rg

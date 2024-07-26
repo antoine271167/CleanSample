@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
-namespace CleanSample.Presentation.FunctionApp.Middleware;
+namespace CleanSample.Presentation.FunctionApp.Middleware.Security;
 
 public class AuthenticationMiddleware : IFunctionsWorkerMiddleware
 {

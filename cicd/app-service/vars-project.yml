@@ -1,6 +1,6 @@
 variables:
-  appName: CleanSample
-  projectName: $(appName).Presentation
+  appName: CleanSampleAppService
+  projectName: $(appName).Presentation.AppService
   buildProjectFile: src/$(appName).Presentation.AppService/$(appName).Presentation.AppService.csproj
   testProjectFiles: |
         tests/$(appName).Application.Tests/$(appName).Application.Tests.csproj

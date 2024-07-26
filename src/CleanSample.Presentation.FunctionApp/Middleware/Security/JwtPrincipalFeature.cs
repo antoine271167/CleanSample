@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace CleanSample.Presentation.FunctionApp.Middleware;
+namespace CleanSample.Presentation.FunctionApp.Middleware.Security;
 
 /// <summary>
 ///     Holds the authenticated user principal
