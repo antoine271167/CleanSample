@@ -10,7 +10,7 @@ namespace CleanSample.Presentation.AppService.Controllers;
 public class ProductController(ISender mediator) : ControllerBase
 {
     [HttpGet]
-    public Task<ProductDto> Get(Guid productId) =>
+    public Task<ProductDto?> Get(Guid productId) =>
         mediator.Send(new GetProductRequest(productId));
 
     [HttpPost]
