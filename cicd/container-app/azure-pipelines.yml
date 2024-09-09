@@ -20,7 +20,7 @@ variables:
 - template: vars-project.yml
 - template: vars/global.yml@resources
 
-name: AppService-$(appName)-1.0.$(Rev:r)
+name: AppService-$(appNameBase)-1.0.$(Rev:r)
 
 stages:
 #- template: /templates/stage/build-stage.yml@resources
@@ -31,7 +31,7 @@ stages:
     #condition: succeeded()
     environmentName: dev
     azureSubscription: ${{ variables.azureSubscription }}
-    appName: ${{ variables.appName }}-as
+    appName: ${{ variables.appNameBase }}-as
     projectName: ${{ variables.projectName }}
 
 # - template: env-stage.yml

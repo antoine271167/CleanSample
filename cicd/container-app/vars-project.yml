@@ -1,10 +1,10 @@
 variables:
-  appName: CleanSampleContainerApp
-  projectName: $(appName).Presentation.AppService
-  buildProjectFile: src/$(appName).Presentation.AppService/$(appName).Presentation.AppService.csproj
+  appNameBase: CleanSampleContainerApp
+  projectName: $(appNameBase).Presentation.AppService
+  buildProjectFile: src/$(appNameBase).Presentation.AppService/$(appNameBase).Presentation.AppService.csproj
   testProjectFiles: |
-        tests/$(appName).Application.Tests/$(appName).Application.Tests.csproj
-        tests/$(appName).Domain.Tests/$(appName).Domain.Tests.csproj
-        tests/$(appName).Infrastructure.Tests/$(appName).Infrastructure.Tests.csproj
-        tests/$(appName).Presentation.AppService.Tests/$(appName).Presentation.AppService.Tests.csproj
-  publishProjectFiles: src/$(appName).Presentation.AppService/$(appName).Presentation.AppService.csproj
+        tests/$(appNameBase).Application.Tests/$(appNameBase).Application.Tests.csproj
+        tests/$(appNameBase).Domain.Tests/$(appNameBase).Domain.Tests.csproj
+        tests/$(appNameBase).Infrastructure.Tests/$(appNameBase).Infrastructure.Tests.csproj
+        tests/$(appNameBase).Presentation.AppService.Tests/$(appNameBase).Presentation.AppService.Tests.csproj
+  publishProjectFiles: src/$(appNameBase).Presentation.AppService/$(appNameBase).Presentation.AppService.csproj

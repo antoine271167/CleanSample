@@ -4,7 +4,7 @@ parameters:
 #- name: condition
 - name: azureSubscription
   type: string
-- name: appName
+- name: appNameBase
   type: string
 - name: projectName
   type: string
@@ -23,7 +23,7 @@ stages:
     - template: /templates/task/containerapp/containerapp-create-task.yml@resources
       parameters:
         azureSubscription: ${{ parameters.azureSubscription }}
-        appName: ${{ parameters.appName }}
+        appName: ${{ parameters.appNameBase }}
         appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.json
         envAppSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.${{ parameters.environmentName }}.json
 
