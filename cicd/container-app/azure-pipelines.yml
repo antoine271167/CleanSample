@@ -31,7 +31,7 @@ stages:
     #condition: succeeded()
     environmentName: dev
     azureSubscription: ${{ variables.azureSubscription }}
-    appName: ${{ variables.appNameBase }}-as
+    appNameBase: ${{ variables.appNameBase }}-as
     projectName: ${{ variables.projectName }}
 
 # - template: env-stage.yml

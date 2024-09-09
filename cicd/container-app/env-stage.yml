@@ -23,7 +23,7 @@ stages:
     - template: /templates/task/containerapp/containerapp-create-task.yml@resources
       parameters:
         azureSubscription: ${{ parameters.azureSubscription }}
-        appName: ${{ parameters.appNameBase }}
+        appNameBase: ${{ parameters.appNameBase }}
         appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.json
         envAppSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.${{ parameters.environmentName }}.json
 
