@@ -1,7 +1,7 @@
 parameters:
 - name: environmentName
   type: string
-- name: condition
+#- name: condition
 - name: azureSubscription
   type: string
 - name: appName
