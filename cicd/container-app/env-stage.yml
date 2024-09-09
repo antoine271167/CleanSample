@@ -12,7 +12,7 @@ parameters:
 stages:
 - stage: ${{ parameters.environmentName }}Infra
   displayName: ${{ parameters.environmentName }} - deploy
-  condition: ${{ parameters.condition }}
+  # condition: ${{ parameters.condition }}
   dependsOn: Build
   jobs:
   - job: CreateAppResources
