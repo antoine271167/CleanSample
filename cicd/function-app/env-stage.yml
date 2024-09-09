@@ -20,7 +20,7 @@ stages:
     steps:
     - checkout: self
     - checkout: resources
-    - template: /templates/task/functionapp-create-task.yml@resources
+    - template: /templates/task/functionapp/functionapp-create-task.yml@resources
       parameters:
         azureSubscription: ${{ parameters.azureSubscription }}
         appName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}
@@ -35,7 +35,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - template: /templates/task/functionapp-deploy-task.yml@resources
+          - template: /templates/task/functionapp/functionapp-deploy-task.yml@resources
             parameters:
               azureSubscription: ${{ parameters.azureSubscription }}
               functionAppName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}-fa

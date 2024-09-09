@@ -20,7 +20,7 @@ stages:
     steps:
     - checkout: self
     - checkout: resources
-    - template: /templates/task/appservice-create-task.yml@resources
+    - template: /templates/task/appservice/appservice-create-task.yml@resources
       parameters:
         azureSubscription: ${{ parameters.azureSubscription }}
         appName: ${{ parameters.appName }}
@@ -35,7 +35,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - template: /templates/task/appservice-deploy-task.yml@resources
+          - template: /templates/task/appservice/appservice-deploy-task.yml@resources
             parameters:
               azureSubscription: ${{ parameters.azureSubscription }}
               appServiceName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}-as

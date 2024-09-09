@@ -1,0 +1,51 @@
+trigger:
+  branches:
+    include:
+    - develop
+    - release/*
+    - main
+
+resources:
+  repositories:
+  - repository: resources
+    type: github
+    name: antoine271167/CleanSample.Shared
+    endpoint: github.com_antoine271167
+    ref: refs/heads/main
+
+pool:
+  vmImage: windows-latest
+
+variables:
+- template: vars-project.yml
+- template: vars/global.yml@resources
+
+name: AppService-$(appName)-1.0.$(Rev:r)
+
+stages:
+#- template: /templates/stage/build-stage.yml@resources
+
+- template: env-stage.yml
+  parameters:
+    #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
+    condition: succeeded()
+    environmentName: dev
+    azureSubscription: ${{ variables.azureSubscription }}
+    appName: ${{ variables.appName }}-as
+    projectName: ${{ variables.projectName }}
+
+# - template: env-stage.yml
+#   parameters:
+#     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
+#     environmentName: tst
+#     azureSubscription: ${{ variables.azureSubscription }}
+    # appName: ${{ variables.appName }}-as
+    # projectName: ${{ variables.projectName }}
+
+# - template: env-stage.yml
+#   parameters:
+#     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+#     environmentName: prd
+#     azureSubscription: ${{ variables.azureSubscription }}
+    # appName: ${{ variables.appName }}-as
+    # projectName: ${{ variables.projectName }}

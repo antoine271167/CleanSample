@@ -1,0 +1,42 @@
+parameters:
+- name: environmentName
+  type: string
+- name: condition
+- name: azureSubscription
+  type: string
+- name: appName
+  type: string
+- name: projectName
+  type: string
+
+stages:
+- stage: ${{ parameters.environmentName }}Infra
+  displayName: ${{ parameters.environmentName }} - deploy
+  condition: ${{ parameters.condition }}
+  dependsOn: Build
+  jobs:
+  - job: CreateAppResources
+    displayName: Create App Resources for ${{ parameters.environmentName }}
+    steps:
+    - checkout: self
+    - checkout: resources
+    - template: /templates/task/containerapp/containerapp-create-task.yml@resources
+      parameters:
+        azureSubscription: ${{ parameters.azureSubscription }}
+        appName: ${{ parameters.appName }}
+        appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.json
+        envAppSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.${{ parameters.environmentName }}.json
+
+  # - deployment: ${{ parameters.environmentName }}
+  #   displayName: Deploy App to ${{ parameters.environmentName }}
+  #   environment: azdo-${{ parameters.environmentName }}
+  #   dependsOn: CreateAppResources
+  #   strategy:
+  #     runOnce:
+  #       deploy:
+  #         steps:
+  #         - template: /templates/task/appservice/appservice-deploy-task.yml@resources
+  #           parameters:
+  #             azureSubscription: ${{ parameters.azureSubscription }}
+  #             appServiceName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}-as
+  #             projectName: ${{ parameters.projectName }}
