@@ -23,12 +23,8 @@ variables:
 name: AppService-$(appNameBase)-1.0.$(Rev:r)
 
 stages:
-#- template: /templates/stage/build-stage.yml@resources
-
 - template: env-stage.yml
   parameters:
-    #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), ne(variables['Build.Reason'], 'PullRequest'))
-    #condition: succeeded()
     environmentName: dev
     azureSubscription: ${{ variables.azureSubscription }}
     appNameBase: ${{ variables.appNameBase }}-ca

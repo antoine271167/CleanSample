@@ -1,7 +1,6 @@
 parameters:
 - name: environmentName
   type: string
-#- name: condition
 - name: azureSubscription
   type: string
 - name: appNameBase
@@ -10,33 +9,40 @@ parameters:
   type: string
 
 stages:
-- stage: ${{ parameters.environmentName }}Infra
-  displayName: ${{ parameters.environmentName }} - deploy
-  # condition: ${{ parameters.condition }}
-  # dependsOn: Build
+# - stage: ${{ parameters.environmentName }}Infra
+#   displayName: ${{ parameters.environmentName }} - deploy
+#   jobs:
+#   - job: Platform
+#     displayName: Create Platform for ${{ parameters.environmentName }}
+#     steps:
+#     - checkout: self
+#     - checkout: resources
+#     - template: /templates/task/containerapp/containerapp-platform-task.yml@resources
+#       parameters:
+#         azureSubscription: ${{ parameters.azureSubscription }}
+#         appNameBase: ${{ parameters.appNameBase }}
+#         appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.json
+#         envAppSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.${{ parameters.environmentName }}.json
+#         environmentName: ${{ parameters.environmentName }}
+
+- stage: ${{ parameters.environmentName }}Build
+  displayName: ${{ parameters.environmentName }} - build container
+  variables:
+    acaEnvName: lower(${{ parameters.appNameBase }}-appenv-${{ parameters.environmentName }})
+    imageName: lower(${{ parameters.appNameBase }})
+    tag: $(Build.BuildId)
+    containerRegistryName: lower(replace(${{ parameters.appNameBase }}-cr), '-', '')
+    registryUri: $(containerRegistryName).azurecr.io
+    dockerFile: ./src/${{ parameters.projectName }}/Dockerfile
   jobs:
-  - job: CreateAppResources
-    displayName: Create App Resources for ${{ parameters.environmentName }}
+    job: Build
     steps:
     - checkout: self
     - checkout: resources
-    - template: /templates/task/containerapp/containerapp-create-task.yml@resources
+    - template: /templates/task/docker-containerimage-build-task.yml@resources
       parameters:
         azureSubscription: ${{ parameters.azureSubscription }}
-        appNameBase: ${{ parameters.appNameBase }}
-        appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.json
-        envAppSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.${{ parameters.environmentName }}.json
-
-  # - deployment: ${{ parameters.environmentName }}
-  #   displayName: Deploy App to ${{ parameters.environmentName }}
-  #   environment: azdo-${{ parameters.environmentName }}
-  #   dependsOn: CreateAppResources
-  #   strategy:
-  #     runOnce:
-  #       deploy:
-  #         steps:
-  #         - template: /templates/task/appservice/appservice-deploy-task.yml@resources
-  #           parameters:
-  #             azureSubscription: ${{ parameters.azureSubscription }}
-  #             appServiceName: ${{ lower(parameters.appName) }}-${{ lower(parameters.environmentName) }}-as
-  #             projectName: ${{ parameters.projectName }}
+        registryUri: $(registryUri)
+        imageName: $(imageName)
+        tag: $(tag)
+        dockerFile: $(dockerFile)
