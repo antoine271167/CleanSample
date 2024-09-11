@@ -29,9 +29,9 @@ stages:
   displayName: ${{ parameters.environmentName }} - build
   variables:
     acaEnvName: ${{ lower(parameters.appNameBase) }}-acae
-    imageName: ${{ lower(parameters.appNameBase) }}
+    imageName: ${{ lower(replace(parameters.appNameBase, '-', '')) }}
     tag: $(Build.BuildId)
-    containerRegistryName: ${{ lower(replace(parameters.appNameBase, '-', '')) }}cr
+    containerRegistryName: $(imageName)cr
     registryUri: $(containerRegistryName).azurecr.io
     dockerFile: ./src/${{ parameters.projectName }}/Dockerfile
   jobs:
