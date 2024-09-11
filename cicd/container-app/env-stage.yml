@@ -28,10 +28,10 @@ stages:
 - stage: ${{ parameters.environmentName }}Build
   displayName: ${{ parameters.environmentName }} - build container
   variables:
-    acaEnvName: lower("${{ parameters.appNameBase }}-acae")
-    imageName: lower("${{ parameters.appNameBase }}")
+    acaEnvName: ${{ lower(parameters.appNameBase) }}-acae
+    imageName: ${{ lower(parameters.appNameBase) }}
     tag: $(Build.BuildId)
-    containerRegistryName: lower(replace("${{ parameters.appNameBase }}-cr", "-", ""))
+    containerRegistryName: ${{ lower(replace(parameters.appNameBase, '-', '')) }}cr
     registryUri: $(containerRegistryName).azurecr.io
     dockerFile: ./src/${{ parameters.projectName }}/Dockerfile
   jobs:
