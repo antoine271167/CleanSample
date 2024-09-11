@@ -9,7 +9,6 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/nuget.config", "src/"]
 COPY ["src/CleanSample.Presentation.AppService/CleanSample.Presentation.AppService.csproj", "src/CleanSample.Presentation.AppService/"]
 RUN dotnet restore "./src/CleanSample.Presentation.AppService/./CleanSample.Presentation.AppService.csproj"
 COPY . .
