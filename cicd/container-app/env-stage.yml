@@ -33,7 +33,7 @@ stages:
     tag: $(Build.BuildId)
     containerRegistryName: $(imageName)cr
     registryUri: $(containerRegistryName).azurecr.io
-    dockerFile: ./src/${{ parameters.projectName }}/Dockerfile
+    dockerFile: $(Pipeline.Workspace)/s/CleanSample/src/${{ parameters.projectName }}/Dockerfile
   jobs:
   - job: Build
     steps:
