@@ -14,7 +14,7 @@ resources:
     ref: refs/heads/main
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 variables:
 - template: vars-project.yml

@@ -21,8 +21,8 @@ stages:
 #       parameters:
 #         azureSubscription: ${{ parameters.azureSubscription }}
 #         appNameBase: ${{ parameters.appNameBase }}
-#         appSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.json
-#         envAppSettings: $(Pipeline.Workspace)\s\CleanSample\cicd\container-app\params.${{ parameters.environmentName }}.json
+#         appSettings: $(Pipeline.Workspace)/s/CleanSample/cicd/container-app/params.json
+#         envAppSettings: $(Pipeline.Workspace)/s/CleanSample/cicd/container-app/params.${{ parameters.environmentName }}.json
 #         environmentName: ${{ parameters.environmentName }}
 
 - stage: ${{ parameters.environmentName }}Build
