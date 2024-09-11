@@ -50,3 +50,4 @@ stages:
         imageName: $(imageName)
         tag: $(tag)
         dockerFile: $(Pipeline.Workspace)/s/CleanSample/Dockerfile
+        context: $(Pipeline.Workspace)/s/CleanSample/
