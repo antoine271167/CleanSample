@@ -40,8 +40,9 @@ stages:
     - checkout: self
     - checkout: resources
     - task: PowerShell@2
-      targetType: inline
-      script: copy '$(dockerFile)' '$(Pipeline.Workspace)/s/CleanSample/'
+      inputs:
+        targetType: inline
+        script: copy '$(dockerFile)' '$(Pipeline.Workspace)/s/CleanSample/'
     - template: /templates/task/docker-containerimage-build-task.yml@resources
       parameters:
         azureSubscription: ${{ parameters.azureSubscription }}
