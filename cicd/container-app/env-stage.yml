@@ -9,8 +9,8 @@ parameters:
   type: string
 
 stages:
-# - stage: ${{ parameters.environmentName }}Infra
-#   displayName: ${{ parameters.environmentName }} - deploy
+# - stage: ${{ parameters.environmentName }}Platform
+#   displayName: ${{ parameters.environmentName }} - platform
 #   jobs:
 #   - job: Platform
 #     displayName: Create Platform for ${{ parameters.environmentName }}
@@ -26,7 +26,7 @@ stages:
 #         environmentName: ${{ parameters.environmentName }}
 
 - stage: ${{ parameters.environmentName }}Build
-  displayName: ${{ parameters.environmentName }} - build container
+  displayName: ${{ parameters.environmentName }} - build
   variables:
     acaEnvName: ${{ lower(parameters.appNameBase) }}-acae
     imageName: ${{ lower(parameters.appNameBase) }}
