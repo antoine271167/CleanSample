@@ -31,7 +31,7 @@ stages:
     acaEnvName: lower("${{ parameters.appNameBase }}-acae")
     imageName: lower("${{ parameters.appNameBase }}")
     tag: $(Build.BuildId)
-    containerRegistryName: lower(replace("${{ parameters.appNameBase }}-cr"), "-", "")
+    containerRegistryName: lower(replace("${{ parameters.appNameBase }}-cr", "-", ""))
     registryUri: $(containerRegistryName).azurecr.io
     dockerFile: ./src/${{ parameters.projectName }}/Dockerfile
   jobs:
