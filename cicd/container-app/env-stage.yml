@@ -35,7 +35,7 @@ stages:
     registryUri: $(containerRegistryName).azurecr.io
     dockerFile: ./src/${{ parameters.projectName }}/Dockerfile
   jobs:
-    job: Build
+  - job: Build
     steps:
     - checkout: self
     - checkout: resources
